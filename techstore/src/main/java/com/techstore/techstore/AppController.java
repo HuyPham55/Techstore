@@ -14,9 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class AppController {
-    @RequestMapping("/") 
-    public String welcome(){
-        return "homepage.html";
+
+    @RequestMapping("/")
+    public String homepage() {
+        return "homepage";
     }
-    
+    @RequestMapping("/thongtin")
+    public String about() {
+        return "about";
+    }
+
 }
