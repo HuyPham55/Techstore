@@ -6,6 +6,7 @@
 package com.techstore.techstore.entities;
 
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,9 +28,12 @@ public class OrderDetail extends BaseEntity {
     @MapsId("id")
     @JoinColumn(name = "order_id")
     private OrderEntity order;
-
+    
+    @Column
     private String status;
-
+    
+    @Column
+    private int quantity;
     public ProductEntity getProduct() {
         return product;
     }

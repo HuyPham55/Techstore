@@ -25,7 +25,7 @@ public class ProductEntity extends BaseEntity {
     @Column
     private String name;
 
-    @Column
+    @Column(length=4096)
     private String description;
 
     @Column

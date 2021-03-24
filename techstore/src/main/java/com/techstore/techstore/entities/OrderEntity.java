@@ -24,25 +24,14 @@ import javax.persistence.Table;
 public class OrderEntity extends BaseEntity {
 
     @Column
-    private Date orderDate;
-
-    @Column
     private String status;
 
     @ManyToOne
     @JoinColumn(name = "customer_id") //Ten cua truong trong bang
     private CustomerEntity customer;
 
-    
-    @OneToMany(mappedBy="order")
+    @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails = new ArrayList();
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
 
     public String getStatus() {
         return status;
