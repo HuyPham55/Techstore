@@ -60,4 +60,12 @@ public class OrderEntity extends BaseEntity {
         this.customer = customer;
     }
 
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
 }

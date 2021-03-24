@@ -28,7 +28,6 @@ public class OrderDetail extends BaseEntity {
     @JoinColumn(name = "order_id")
     private OrderEntity order;
 
-    private Date orderDate;
     private String status;
 
     public ProductEntity getProduct() {
@@ -45,14 +44,6 @@ public class OrderDetail extends BaseEntity {
 
     public void setOrder(OrderEntity order) {
         this.order = order;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
     }
 
     public String getStatus() {

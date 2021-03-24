@@ -38,9 +38,9 @@ public class ProductEntity extends BaseEntity {
     @JoinColumn(name = "category_id") //Ten cua truong trong bang
     private CategoryEntity category;
 
-    @OneToMany(mappedBy="product")
+    @OneToMany(mappedBy = "product")
     private List<OrderDetail> orderDetails = new ArrayList();
-    
+
     public String getName() {
         return name;
     }
@@ -79,6 +79,14 @@ public class ProductEntity extends BaseEntity {
 
     public void setCategory(CategoryEntity category) {
         this.category = category;
+    }
+
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 
 }
