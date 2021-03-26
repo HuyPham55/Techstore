@@ -31,7 +31,7 @@ CREATE TABLE `categories` (
   `image` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,7 +58,7 @@ CREATE TABLE `customers` (
   `name` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,8 +86,10 @@ CREATE TABLE `order_detail` (
   `product_id` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKrws2q0si6oyd6il8gqe2aennc` (`order_id`),
-  KEY `FKc7q42e9tu0hslx6w4wxgomhvn` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  KEY `FKc7q42e9tu0hslx6w4wxgomhvn` (`product_id`),
+  CONSTRAINT `FKc7q42e9tu0hslx6w4wxgomhvn` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  CONSTRAINT `FKrws2q0si6oyd6il8gqe2aennc` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,8 +115,9 @@ CREATE TABLE `orders` (
   `status` varchar(255) DEFAULT NULL,
   `customer_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKpxtb8awmi0dk6smoh2vp1litg` (`customer_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  KEY `FKpxtb8awmi0dk6smoh2vp1litg` (`customer_id`),
+  CONSTRAINT `FKpxtb8awmi0dk6smoh2vp1litg` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,8 +146,9 @@ CREATE TABLE `products` (
   `price` double DEFAULT NULL,
   `category_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKog2rp4qthbtt2lfyhfo32lsw9` (`category_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  KEY `FKog2rp4qthbtt2lfyhfo32lsw9` (`category_id`),
+  CONSTRAINT `FKog2rp4qthbtt2lfyhfo32lsw9` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,4 +170,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-24 18:57:11
+-- Dump completed on 2021-03-26  9:39:44
