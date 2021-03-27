@@ -21,6 +21,7 @@
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,NULL,'Thiết bị di động cầm tay','https://img.icons8.com/clouds/2x/multiple-smartphones.png','Điện thoại'),(2,NULL,'Máy tính xách tay','https://img.icons8.com/clouds/2x/laptop.png','Laptop');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -30,6 +31,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
+INSERT INTO `customers` VALUES (1,NULL,'593 Camylle Dale Suite 479\nNew Aaliyah, WV 98845','alti2ude.com','Aiyana Mann','+6550175330038'),(2,NULL,'47167 McGlynn Track\nSouth Mariliehaven, HI 90985-3140',NULL,'Rowland Volkman','+7378819109819'),(3,NULL,'67234 Buddy Harbors\nPort Jana, SC 88691-7780','dsty.fas@yosketchers.ml','Bella Toy Jr.','+6780555866667'),(4,NULL,'4244 Tressie Plains\nKristinbury, TN 21385-5148',NULL,'Laney Pollich MD','+6707311839243'),(5,NULL,'64299 Rath Garden Suite 831\nPort Sister, VA 32829','jbascara.joshuaz@beveragedictionary.com','Monty Kunze DDS','+9366210890105'),(6,NULL,'8189 Samara Port\nEast Elmerstad, IL 25166','0dangers7c@jowabols.com','Dr. Xander Senger PhD','+7343765517518'),(7,NULL,'869 Walsh Rest Suite 943\nPort Aimee, ME 96810',NULL,'Sadie Feest','+4420800920918'),(8,NULL,'463 Marshall Forges Apt. 410\nRooseveltborough, NY 62751',NULL,'Baron Schmeler','+9915263446336'),(9,NULL,'66429 Herzog Summit\nRubieburgh, RI 16167','qd@gmail.com','Ms. Cora Cormier','+4298879693075'),(10,NULL,'9612 Billie Trail\nWest Katelinside, IN 85709',NULL,'Marjorie Nikolaus MD','+4857988438404'),(11,NULL,'548 Robb Avenue\nPort Odessafurt, GA 87511-8816','jyoann.botquelens@cityquote.com','Ken Upton','+5482075307708'),(12,NULL,'220 Gutmann Plaza\nLake Hollisview, UT 72079-1924','3abdall@lilidirectory.com','Malika Marquardt','+8614408388742'),(13,NULL,'32008 Germaine Parks Suite 753\nKoelpinstad, OR 52412',NULL,'Ms. Violette Schulist','+4707426462536'),(14,NULL,'31816 Marjolaine Place Suite 980\nSchaefermouth, WA 31890-0018','vmr.jaden.r@hayuk.pw','Dr. Brayan Abernathy','+9730621162321'),(15,NULL,'8107 Zieme Curve Apt. 808\nNorth Bradyshire, NE 17273-0330','dhaidarlaeve@frutaa.website','La Thi Bai','+6361852378494');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -72,4 +74,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-24 18:57:39
+-- Dump completed on 2021-03-26 16:28:27
