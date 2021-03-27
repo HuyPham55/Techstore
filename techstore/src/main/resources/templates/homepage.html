@@ -5,5 +5,21 @@
     </head>
     <body>
         <header th:insert="fragments/head.html"> </header>
+        <div class="container">
+            <div class="row justify-content-start">
+                <div th:each="product:${listProducts}" class="d-flex align-content-between flex-wrap float-start col-md-3 col-md-4 shadow-sm ">
+                    <img class="card-img-top m-2" th:src="${product.image}" >
+                    <div class="bottom-wrap m-2 card-body">
+                        <h5 class="card-title" th:text="${product.name}"></h5>
+                        <p class="card-text col-4" th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')} "></p>
+                        <div class="d-grid gap-2">
+                            <a class="btn btn-danger col-12" >Mua ngay</a>
+                            <a class="btn btn-primary col-12" th:href="@{'/product/'+${product.id}}">Xem chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:insert="fragments/foot.html"> </footer>
     </body>
 </html>
