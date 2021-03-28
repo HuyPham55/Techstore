@@ -26,7 +26,8 @@ public class ProductController {
     @RequestMapping("/product/{id}")
     public String showProductById(@PathVariable(name = "id") Long id, Model model) {
         ProductEntity product = productService.get(id);
-        System.out.println("The category browsing is: "+product.getCategory());
+        //Debug
+        //System.out.println("The category browsing is: "+product.getCategory().getName());
         model.addAttribute("product", product);
         return "product";
     }

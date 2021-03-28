@@ -5,6 +5,9 @@
     </head>
     <body>
         <header th:insert="fragments/head.html"> </header>
+        <div class="container mt-5">
+            <p class="h5 m-4" th:text="@{'Home>'+${product.getCategory().getName()}}"></p>
+        </div>
         <div class="container mt-5 h-100">
             <div class="row">
                 <div class="col-md m-3 text-center">
