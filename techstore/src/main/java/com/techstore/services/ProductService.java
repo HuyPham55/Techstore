@@ -36,14 +36,4 @@ public class ProductService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
-
-    public List<ProductEntity> findByForeignKey(Long category) {
-        List<ProductEntity> productList = null;
-        for (ProductEntity product : repository.findAll()) {
-            if (category == product.getCategory()) {
-                productList.add(product);
-            }
-        }
-        return productList;
-    }
 }
