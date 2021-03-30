@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Trang chủ</title>
+    </head>
+    <body>
+        <header th:insert="fragments/head.html"> </header>
+        <div class="container">
+            <div class="row justify-content-start">
+                <div th:if="${order}!=null" th:each="product:${order}" class="d-flex align-content-between flex-wrap float-start col-md-3 col-md-4 shadow-sm ">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td th:text="${product.getProduct(}.name"></td>
+                                <td th:text="${product.getProduct().price}"></td>
+                                <td>@mdo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <footer th:insert="fragments/foot.html"> </footer>
+    </body>
+</html>
