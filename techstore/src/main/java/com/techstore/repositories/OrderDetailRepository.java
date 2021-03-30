@@ -5,12 +5,13 @@
  */
 package com.techstore.repositories;
 
+import com.techstore.techstore.entities.OrderDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author Administrator
  */
-public interface OrderDetailRepository extends JpaRepository {
+public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> {
 
 }

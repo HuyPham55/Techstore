@@ -30,7 +30,7 @@ public class OrderDetailService {
     }
 
     public OrderDetail get(Long id) {
-        return (OrderDetail) repository.findById(id).get();
+        return repository.findById(id).get();
     }
 
     public void delete(Long id) {
