@@ -38,13 +38,14 @@ public class ProductService {
         repository.deleteById(id);
     }
 
-<<<<<<< HEAD
+
     public List<ProductEntity> findByString(String search) {
 
         System.out.println("Search string (Debug from ProductService)"+search);
         return repository.findByString(search);
-=======
-    public List<ProductEntity> findByForeignKey(Long category) {
+    }
+    
+    public List<ProductEntity> findByForeignKey (Long category) {
         List<ProductEntity> productList = null;
         for (ProductEntity product : repository.findAll()) {
             if (Objects.equals(category, product.getCategory())) {
@@ -52,6 +53,5 @@ public class ProductService {
             }
         }
         return productList;
->>>>>>> feature/shoppingcart
     }
 }

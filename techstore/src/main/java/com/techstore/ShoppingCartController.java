@@ -7,7 +7,9 @@ package com.techstore;
 
 import com.techstore.services.ProductService;
 import com.techstore.techstore.entities.OrderDetail;
+import com.techstore.techstore.entities.OrderEntity;
 import com.techstore.techstore.entities.ProductEntity;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,10 +30,10 @@ public class ShoppingCartController {
     public String showGioHang(HttpSession session,
             Model model,
             HttpServletRequest req
-            ) {
+    ) {
         if (session.getAttribute("order") != null) {
             model.addAttribute("order", session.getAttribute("order"));
-        } 
+        }
         return "shoppingcart";
     }
 
@@ -40,16 +42,40 @@ public class ShoppingCartController {
             Model model,
             HttpServletRequest req,
             @PathVariable(name = "id") Long id) {
-        int Quantity=1;
-        
-        if(productService.get(id)!=null){
-            if(session.getAttribute("order")==null){
-                List<OrderDetail> listOrder =null;
-                OrderDetail order = new OrderDetail();
-                order.setProduct(productService.get(id));
-                order.setQuantity(Quantity);
-                listOrder.add(order);
-                req.getSession().setAttribute("order", listOrder);
+        int Quantity = 1;
+
+        if (productService.get(id) != null) {
+            if (session.getAttribute("order") == null) {
+                OrderEntity order = new OrderEntity();
+                List<OrderDetail> listSP = new ArrayList<OrderDetail>();
+                OrderDetail SP = new OrderDetail();
+                SP.setProduct(productService.get(id));
+                SP.setQuantity(Quantity);
+                listSP.add(SP);
+                order.setOrderDetails(listSP);
+                req.getSession().setAttribute("order", order);
+            } else {
+
+                OrderEntity order = (OrderEntity) session.getAttribute("order");
+                List<OrderDetail> listSP = order.getOrderDetails();
+                boolean check = true;
+                for (OrderDetail SP : listSP) {
+                    if (SP.getId() == id) {
+                        check = false;
+                        SP.setQuantity(SP.getQuantity() + Quantity);
+                        break;
+                    }
+                }
+
+                if (check) {
+                    OrderDetail SP = new OrderDetail();
+                    SP.setProduct(productService.get(id));
+                    SP.setQuantity(Quantity);
+                    listSP.add(SP);
+                    order.setOrderDetails(listSP);
+                    req.getSession().setAttribute("order", order);
+                }
+
             }
         }
         return "redirect:/giohang";
