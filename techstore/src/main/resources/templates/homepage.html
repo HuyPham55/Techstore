@@ -13,7 +13,7 @@
                         <h5 class="card-title name" th:text="${product.name}"></h5>
                         <p class="card-text col-4" th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')} "></p>
                         <div class="d-grid gap-2">
-                            <a href="/giohang" class="btn btn-danger col-12" >Mua ngay</a>
+                            <a th:href="@{'/giohang/addTocart/'+${product.id}}" class="btn btn-danger col-12" >Mua ngay</a>
                             <a class="btn btn-primary col-12" th:href="@{'/product/'+${product.id}}">Xem chi tiết</a>
                         </div>
                     </div>

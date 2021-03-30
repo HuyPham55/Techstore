@@ -18,13 +18,12 @@
                     </div>
                     
                     <div class="card-text">
-                        <a class="btn btn-outline-primary float-end" id="submit1" type="button" href="/giohang">Thêm vào giỏ hàng  </a>
+                        <a class="btn btn-outline-primary float-end" id="submit1" type="button" th:href="@{'/giohang/addTocart/'+${product.id}}">Thêm vào giỏ hàng  </a>
                         <h5 class="" th:text="@{'Giá sản phẩm: '+${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}}+'VNĐ'"></h5>
                     </div>
                 </div>
             </div>
         </div>
         <footer th:insert="fragments/foot.html"> </footer>
-        <script th:src="@{/js/themvaogio.js}"></script>
     </body>
 </html>
