@@ -25,7 +25,7 @@ public class ProductEntity extends BaseEntity {
     @Column
     private String name;
 
-    @Column(length=4096)
+    @Column(length = 4096)
     private String description;
 
     @Column
@@ -87,6 +87,10 @@ public class ProductEntity extends BaseEntity {
 
     public void setOrderDetails(List<OrderDetail> orderDetails) {
         this.orderDetails = orderDetails;
+    }
+
+    public String getCategoryName() {
+        return this.category.getName();
     }
 
 }

@@ -29,16 +29,20 @@ public class HomeController {
     private CategoryService categoryService;
 
     @RequestMapping("/")
-    public String homepage(Model model, @RequestParam(required = false) Long category) {
+    public String homepage(Model model, @RequestParam(required = false) Long category, @RequestParam(required = false) String search) {
         List<ProductEntity> listProducts;
         if (null != category) {
-            CategoryEntity categoryEntity=categoryService.get(category);
-            listProducts = categoryEntity.getProducts();
-          
-        } else {
-            listProducts = productService.all();
+            CategoryEntity categoryEntity = categoryService.get(category);
+            model.addAttribute("listProducts", categoryEntity.getProducts());
+            return "homepage";
+
         }
-        model.addAttribute("listProducts", listProducts);
+
+        if (null != search) {
+            model.addAttribute("listProducts", productService.findByString(search));
+            return "homepage";
+        }
+        model.addAttribute("listProducts", productService.all());
         return "homepage";
     }
 

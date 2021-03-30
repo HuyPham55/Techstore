@@ -36,4 +36,10 @@ public class ProductService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    public List<ProductEntity> findByString(String search) {
+
+        System.out.println("Search string (Debug from ProductService)"+search);
+        return repository.findByString(search);
+    }
 }
