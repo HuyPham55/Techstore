@@ -29,7 +29,7 @@ public class OrderDetail extends BaseEntity {
     private OrderEntity order;
     
     @Column
-    private String status;
+    private int status;
     
     @Column
     private int quantity;
@@ -49,11 +49,11 @@ public class OrderDetail extends BaseEntity {
         this.order = order;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

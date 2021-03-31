@@ -33,7 +33,7 @@ public class ShoppingCartController {
     ) {
         if (session.getAttribute("order") != null) {
             model.addAttribute("order", session.getAttribute("order"));
-        }
+        } 
         return "shoppingcart";
     }
 
@@ -43,7 +43,6 @@ public class ShoppingCartController {
             HttpServletRequest req,
             @PathVariable(name = "id") Long id) {
         int Quantity = 1;
-
         if (productService.get(id) != null) {
             if (session.getAttribute("order") == null) {
                 OrderEntity order = new OrderEntity();
@@ -51,6 +50,7 @@ public class ShoppingCartController {
                 OrderDetail SP = new OrderDetail();
                 SP.setProduct(productService.get(id));
                 SP.setQuantity(Quantity);
+                SP.setStatus(1);
                 listSP.add(SP);
                 order.setOrderDetails(listSP);
                 req.getSession().setAttribute("order", order);
@@ -60,23 +60,42 @@ public class ShoppingCartController {
                 List<OrderDetail> listSP = order.getOrderDetails();
                 boolean check = true;
                 for (OrderDetail SP : listSP) {
-                    if (SP.getId() == id) {
+                    if (SP.getProduct().getId() == id) {
                         check = false;
                         SP.setQuantity(SP.getQuantity() + Quantity);
                         break;
                     }
                 }
-
                 if (check) {
                     OrderDetail SP = new OrderDetail();
                     SP.setProduct(productService.get(id));
                     SP.setQuantity(Quantity);
+                    SP.setStatus(listSP.size() + 1);
                     listSP.add(SP);
                     order.setOrderDetails(listSP);
                     req.getSession().setAttribute("order", order);
                 }
 
             }
+        }
+        return "redirect:/giohang";
+    }
+    @RequestMapping("/giohang/xoa/{id}")
+    public String xoaSP(HttpSession session,
+            Model model,
+            HttpServletRequest req,
+            @PathVariable(name = "id") Long id
+    ) {
+        if(productService.get(id)!=null){
+            OrderEntity order = (OrderEntity) session.getAttribute("order");
+            List<OrderDetail> listSP= order.getOrderDetails();
+            for(OrderDetail SP : listSP){
+                if(SP.getProduct().getId()==id){
+                    listSP.remove(SP);
+                    break;
+                }
+            }
+            
         }
         return "redirect:/giohang";
     }
