@@ -21,7 +21,8 @@
                 </tr>
             </thead>
             <tbody>            
-                <div th:if="${order}" th:each="product:${order.getOrderDetails()}">
+            <div th:if="${order}">
+                <div  th:each="product:${order.getOrderDetails()}">
                 <tr>
                     <th class="stt">1</th>
                     <td th:text="${product.getProduct().name}"></td>
@@ -37,10 +38,11 @@
                         <a class="btn btn-outline-danger xoa" id="submit1" type="button" th:href="@{'/giohang/xoa/'+${product.getProduct().id}}">Xoá</a>
                     </td> 
                 </tr>
-            </div>                
+            </div>     
+            </div>                           
         </tbody>
     </table>
-     <a type="button" class="btn btn-outline-secondary" id="luu" >Lưu thay đổi</a>
+     <a type="button" class="btn btn-outline-secondary m-2" id="luu" >Lưu thay đổi</a>
      <a type="button" class="btn btn-outline-success " href="/giohang/dathang">Đặt hàng</a>
     <footer th:insert="fragments/foot.html"> </footer>
     <script th:src="@{/js/controlQuantity.js}"></script>

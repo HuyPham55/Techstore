@@ -7,6 +7,7 @@ package com.techstore;
 
 import com.techstore.services.CustomerService;
 import com.techstore.services.OrderDetailService;
+import com.techstore.services.OrderService;
 import com.techstore.services.ProductService;
 import com.techstore.techstore.entities.CustomerEntity;
 import com.techstore.techstore.entities.OrderDetail;
@@ -34,10 +35,13 @@ public class ShoppingCartController {
 
     @Autowired
     private ProductService productService;
-    @Autowired 
-     private CustomerService customerService;
+    @Autowired
+    private CustomerService customerService;
     @Autowired
     private OrderDetailService orderDetailService;
+    @Autowired
+    private OrderService orderService;
+
     @RequestMapping("/giohang")
     public String showGioHang(HttpSession session,
             Model model,
@@ -46,6 +50,7 @@ public class ShoppingCartController {
         if (session.getAttribute("order") != null) {
             model.addAttribute("order", session.getAttribute("order"));
         }
+
         return "shoppingcart";
     }
 
@@ -87,7 +92,6 @@ public class ShoppingCartController {
                     order.setOrderDetails(listSP);
                     req.getSession().setAttribute("order", order);
                 }
-
             }
         }
         return "redirect:/giohang";
@@ -111,39 +115,60 @@ public class ShoppingCartController {
         }
         return "redirect:/giohang";
     }
+    @ResponseBody
     @PostMapping("/giohang/luu")
     public void uppdateQuantit(@RequestBody SL sl, HttpSession session, HttpServletRequest req) {
-            OrderEntity order = (OrderEntity) session.getAttribute("order");
-            List<OrderDetail> listSP = order.getOrderDetails();
-            int i = 0;
-            for (OrderDetail sp : listSP) {
-                sp.setQuantity(Integer.parseInt(sl.sl[i]));
-                i++;
-            }
-            for (OrderDetail sp : listSP) {
-                System.out.println(sp.getQuantity());
-            }
-            order.setOrderDetails(listSP);
-            req.getSession().setAttribute("order", order);
+        OrderEntity order = (OrderEntity) session.getAttribute("order");
+        List<OrderDetail> listSP = order.getOrderDetails();
+        int i = 0;
+        for (OrderDetail sp : listSP) {
+            sp.setQuantity(Integer.parseInt(sl.sl[i]));
+            i++;
+        }
+        for (OrderDetail sp : listSP) {
+            System.out.println(sp.getQuantity());
+        }
+        order.setOrderDetails(listSP);
+        req.getSession().setAttribute("order", order);
     }
+
     @GetMapping("/giohang/dathang")
-    public String showDathang(){
+    public String showDathang() {
         return "khachhang";
     }
+
+    @ResponseBody
     @PostMapping("/giohang/dathang")
-    public void xacnhan(@RequestBody CustomerEntity Khachhang,HttpSession session){
+    public void xacnhan(@RequestBody CustomerEntity Khachhang, HttpSession session, HttpServletRequest req) {
         CustomerEntity newCustomer = new CustomerEntity();
-        boolean check=false;
+        boolean check = true;
         List<CustomerEntity> ListCS = customerService.all();
-        for(CustomerEntity cs: ListCS){
-            if(cs.getEmail()==Khachhang.getEmail()){
-                check=true;
-                break;
+        System.out.println(Khachhang.getEmail());
+        String email = Khachhang.getEmail();
+        for (CustomerEntity cs : ListCS) {
+            if (cs.getEmail() != null) {
+                if (cs.getEmail().equals(Khachhang.getEmail())) {
+                    System.out.println(cs.getEmail());
+                    check = false;
+                    newCustomer = cs;
+                    break;
+                }
             }
         }
-        if(check){
-            
+        if (check) {
+            newCustomer = Khachhang;
+            customerService.save(newCustomer);
         }
-        System.out.println(Khachhang.getName());
+        
+        OrderEntity order = (OrderEntity) session.getAttribute("order");
+        
+        order.setCustomer(newCustomer);
+        orderService.save(order);
+        List<OrderDetail> ListSP= order.getOrderDetails();
+        for(OrderDetail sp: ListSP){
+            orderDetailService.save(sp);
+        }
+        
+        req.getSession().setAttribute("order", null);
     }
 }

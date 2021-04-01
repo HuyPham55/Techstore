@@ -34,7 +34,7 @@ public class ProductEntity extends BaseEntity {
     @Column
     private String image;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "category_id") //Ten cua truong trong bang
     private CategoryEntity category;
 

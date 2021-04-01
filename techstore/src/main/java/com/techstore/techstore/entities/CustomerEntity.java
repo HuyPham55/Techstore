@@ -34,7 +34,7 @@ public class CustomerEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "customer")
     private List<OrderEntity> orders = new ArrayList();
-
+    
     public String getName() {
         return name;
     }

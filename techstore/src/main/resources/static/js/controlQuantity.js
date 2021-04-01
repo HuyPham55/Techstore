@@ -31,5 +31,5 @@ luu.addEventListener('click',function(){
    }
    xhr.setRequestHeader("Content-Type", "application/json");
    xhr.send(JSON.stringify(data))
-   location.replace('/giohang');
+   location.reload();
 })
