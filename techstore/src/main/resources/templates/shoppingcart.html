@@ -1,34 +1,48 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Trang chủ</title>
+        <title>Giỏ hàng</title>
     </head>
     <body>
         <header th:insert="fragments/head.html"> </header>
-        <div class="container">
-            <div class="row justify-content-start">
-                <div th:if="${order}!=null" th:each="product:${order}" class="d-flex align-content-between flex-wrap float-start col-md-3 col-md-4 shadow-sm ">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td th:text="${product.getProduct(}.name"></td>
-                                <td th:text="${product.getProduct().price}"></td>
-                                <td>@mdo</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <div>
+            <br/>
+            <h2>Giỏ hàng của bạn:</h2> 
+            <br/>
         </div>
-        <footer th:insert="fragments/foot.html"> </footer>
-    </body>
+        <table class="table m-3">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên sản phẩm</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>            
+                <div th:if="${order}" th:each="product:${order.getOrderDetails()}">
+                <tr>
+                    <th class="stt">1</th>
+                    <td th:text="${product.getProduct().name}"></td>
+                    <td th:text="${#numbers.formatDecimal(product.getProduct().price, 0, 'POINT', 0, 'COMMA')} "></td>
+                    <td > 
+                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+                            <button type="button" class="btn btn-outline-secondary giam">-</button>
+                            <input class= "form-control text-center quantity" th:name ="${product.getProduct().name}" th:placeholder="${product.getQuantity()}" disabled></input>
+                            <button type="button" class="btn btn-outline-secondary tang">+</button>
+                        </div>
+                    </td>
+                    <td> 
+                        <a class="btn btn-outline-danger xoa" id="submit1" type="button" th:href="@{'/giohang/xoa/'+${product.getProduct().id}}">Xoá</a>
+                    </td> 
+                </tr>
+            </div>                
+        </tbody>
+    </table>
+     <a type="button" class="btn btn-outline-secondary" id="luu" >Lưu thay đổi</a>
+     <a type="button" class="btn btn-outline-success " href="/giohang/dathang">Đặt hàng</a>
+    <footer th:insert="fragments/foot.html"> </footer>
+    <script th:src="@{/js/controlQuantity.js}"></script>
+</body>
 </html>

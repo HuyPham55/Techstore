@@ -56,5 +56,4 @@ public class OrderEntity extends BaseEntity {
     public void setOrderDetails(List<OrderDetail> orderDetails) {
         this.orderDetails = orderDetails;
     }
-
 }
