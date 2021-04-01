@@ -14,10 +14,10 @@ import com.techstore.techstore.entities.ProductEntity;
 public class ProductClientObject {
 
     private Long id;
-    private String tensanpham;
-    private double giasanpham;
-    private String hinhanhsanpham;
-    private String motasanpham;
+    private String tensp;
+    private double giasp;
+    private String hinhanhsp;
+    private String motasp;
     private Long idsanpham;
 
     public Long getId() {
@@ -28,52 +28,52 @@ public class ProductClientObject {
         this.id = id;
     }
 
-    public String getTensanpham() {
-        return tensanpham;
+    public String getTensp() {
+        return tensp;
     }
 
-    public void setTensanpham(String tensanpham) {
-        this.tensanpham = tensanpham;
+    public void setTensp(String tensp) {
+        this.tensp = tensp;
     }
 
-    public double getGiasanpham() {
-        return giasanpham;
+    public double getGiasp() {
+        return giasp;
     }
 
-    public void setGiasanpham(double giasanpham) {
-        this.giasanpham = giasanpham;
+    public void setGiasp(double giasp) {
+        this.giasp = giasp;
     }
 
-    public String getHinhanhsanpham() {
-        return hinhanhsanpham;
+    public String getHinhanhsp() {
+        return hinhanhsp;
     }
 
-    public void setHinhanhsanpham(String hinhanhsanpham) {
-        this.hinhanhsanpham = hinhanhsanpham;
+    public void setHinhanhsp(String hinhanhsp) {
+        this.hinhanhsp = hinhanhsp;
     }
 
-    public String getMotasanpham() {
-        return motasanpham;
+    public String getMotasp() {
+        return motasp;
     }
 
-    public void setMotasanpham(String motasanpham) {
-        this.motasanpham = motasanpham;
+    public void setMotasp(String motasp) {
+        this.motasp = motasp;
     }
 
-    public Long getIdsanpham() {
+    public Long getIdsp() {
         return idsanpham;
     }
 
-    public void setIdsanpham(Long idsanpham) {
-        this.idsanpham = idsanpham;
+    public void setIdsp(Long idsp) {
+        this.idsanpham = idsp;
     }
 
     public ProductClientObject(ProductEntity productEntity) {
         this.id = productEntity.getId();
-        this.tensanpham = productEntity.getName();
-        this.giasanpham = productEntity.getPrice();
-        this.hinhanhsanpham = productEntity.getImage();
-        this.motasanpham = productEntity.getDescription();
+        this.tensp = productEntity.getName();
+        this.giasp = productEntity.getPrice();
+        this.hinhanhsp = productEntity.getImage();
+        this.motasp = productEntity.getDescription();
         this.idsanpham = productEntity.getCategoryId();
     }
 
