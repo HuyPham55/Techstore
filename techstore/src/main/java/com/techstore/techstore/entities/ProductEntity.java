@@ -93,4 +93,7 @@ public class ProductEntity extends BaseEntity {
         return this.category.getName();
     }
 
+    public Long getCategoryId() {
+        return this.category.getId();
+    }
 }
