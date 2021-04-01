@@ -8,6 +8,7 @@ package com.techstore.services;
 import com.techstore.repositories.ProductRepository;
 import com.techstore.techstore.entities.ProductEntity;
 import java.util.List;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,9 +38,20 @@ public class ProductService {
         repository.deleteById(id);
     }
 
+
     public List<ProductEntity> findByString(String search) {
 
         System.out.println("Search string (Debug from ProductService)"+search);
         return repository.findByString(search);
+    }
+    
+    public List<ProductEntity> findByForeignKey (Long category) {
+        List<ProductEntity> productList = null;
+        for (ProductEntity product : repository.findAll()) {
+            if (Objects.equals(category, product.getCategory())) {
+                productList.add(product);
+            }
+        }
+        return productList;
     }
 }

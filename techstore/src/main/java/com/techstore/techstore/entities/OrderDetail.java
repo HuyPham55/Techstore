@@ -5,11 +5,13 @@
  */
 package com.techstore.techstore.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -18,7 +20,8 @@ import javax.persistence.MapsId;
 @Entity
 public class OrderDetail extends BaseEntity {
 
-    @ManyToOne
+    
+    @ManyToOne()
     @MapsId("id")
     @JoinColumn(name = "product_id")
     private ProductEntity product;
@@ -29,7 +32,7 @@ public class OrderDetail extends BaseEntity {
     private OrderEntity order;
     
     @Column
-    private String status;
+    private int status;
     
     @Column
     private int quantity;
@@ -49,11 +52,11 @@ public class OrderDetail extends BaseEntity {
         this.order = order;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -63,7 +66,5 @@ public class OrderDetail extends BaseEntity {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    
+    }    
 }

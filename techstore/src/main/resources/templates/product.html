@@ -14,14 +14,14 @@
                     <img class="img-thumbnail" th:src="${product.image}" alt="">
                 </div>
                 <div class="col-md m-3">
-                    <h1 id="" th:text="${product.name}"></h1>
+                    <h1 id="name" th:text="${product.name}"></h1>
                     <div>
                         <h3>Mô tả sản phẩm</h3>
                         <p th:text="${product.description}"></p>
                     </div>
                     
                     <div class="card-text">
-                        <a class="btn btn-outline-primary float-end" id="submit1" type="button" href="/giohang">Thêm vào giỏ hàng  </a>
+                        <a class="btn btn-outline-primary float-end" id="submit1" type="button" th:href="@{'/giohang/addTocart/'+${product.id}}">Thêm vào giỏ hàng  </a>
                         <h5 class="" th:text="@{'Giá sản phẩm: '+${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}}+'VNĐ'"></h5>
                     </div>
                 </div>

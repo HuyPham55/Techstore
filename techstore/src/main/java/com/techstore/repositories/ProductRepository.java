@@ -20,4 +20,6 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     @Query("select product from ProductEntity product where product.name like %:search%")
     //@Query(value= "select * from products where name like %:search%", nativeQuery=true)
     public List<ProductEntity> findByString(@Param("search") String search);
+
+  
 }
