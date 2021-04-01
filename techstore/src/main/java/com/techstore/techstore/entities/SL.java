@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package NewClass;
+package com.techstore.techstore.entities;
+
+import java.util.List;
 
 /**
  *
  * @author Admin
  */
-public class java {
-    
+public class SL {
+    public String[] sl; 
 }

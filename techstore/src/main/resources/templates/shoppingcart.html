@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Trang chủ</title>
+        <title>Giỏ hàng</title>
     </head>
     <body>
         <header th:insert="fragments/head.html"> </header>
@@ -10,9 +10,6 @@
             <h2>Giỏ hàng của bạn:</h2> 
             <br/>
         </div>
-
-
-
         <table class="table m-3">
             <thead>
                 <tr>
@@ -43,8 +40,8 @@
             </div>                
         </tbody>
     </table>
-     <a type="button" class="btn btn-outline-secondary luu" href="/giohang/luu">Lưu thay đổi</a>
-     <button type="button" class="btn btn-outline-success thanhtoan" href="/giohang/thanhtoan">Thanh toán</button>
+     <a type="button" class="btn btn-outline-secondary" id="luu" >Lưu thay đổi</a>
+     <a type="button" class="btn btn-outline-success " href="/giohang/dathang">Đặt hàng</a>
     <footer th:insert="fragments/foot.html"> </footer>
     <script th:src="@{/js/controlQuantity.js}"></script>
 </body>
