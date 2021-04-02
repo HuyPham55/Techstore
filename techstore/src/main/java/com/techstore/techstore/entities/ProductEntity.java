@@ -7,6 +7,7 @@ package com.techstore.techstore.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -35,7 +36,7 @@ public class ProductEntity extends BaseEntity {
     private String image;
 
     @ManyToOne()
-    @JoinColumn(name = "category_id") //Ten cua truong trong bang
+    @JoinColumn(name = "category_id" ) //Ten cua truong trong bang
     private CategoryEntity category;
 
     @OneToMany(mappedBy = "product")
