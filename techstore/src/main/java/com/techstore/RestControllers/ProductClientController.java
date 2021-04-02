@@ -17,6 +17,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -72,6 +73,25 @@ public class ProductClientController {
 
         System.out.println("Size: " + productClientRepository.all().size());
         for (int i = productClientRepository.all().size() - 1; i > productClientRepository.all().size() - 7; i--) {
+            productClientList.add(productClientRepository.getById(i));
+        }
+        return productClientList;
+    }
+
+    @GetMapping("/getsp")
+    public @ResponseBody
+    List<ProductClientObject> getSp(@RequestParam(name = "page", required = false, defaultValue = "1") Integer page) {
+        if (productClientRepository.all().isEmpty()) {
+            productService.all().forEach(productEntity -> {
+                productClientRepository.add(new ProductClientObject(productEntity));
+            });
+        }
+        List<ProductClientObject> productClientList = new ArrayList<ProductClientObject>();
+
+        for (int i = (page - 1) * 5; i < page * 5; i++) {
+            if (i > (productClientRepository.all().size() - 1)) {
+                break;
+            }
             productClientList.add(productClientRepository.getById(i));
         }
         return productClientList;
