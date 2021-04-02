@@ -22,12 +22,10 @@ public class OrderDetail extends BaseEntity {
 
     
     @ManyToOne()
-    @MapsId("id")
     @JoinColumn(name = "product_id")
     private ProductEntity product;
 
-    @ManyToOne
-    @MapsId("id")
+    @ManyToOne()
     @JoinColumn(name = "order_id")
     private OrderEntity order;
     

@@ -157,18 +157,22 @@ public class ShoppingCartController {
         }
         if (check) {
             newCustomer = Khachhang;
-            customerService.save(newCustomer);
         }
-        
+        customerService.save(newCustomer);
         OrderEntity order = (OrderEntity) session.getAttribute("order");
-        
-        order.setCustomer(newCustomer);
-        orderService.save(order);
+        OrderEntity orderCf= new OrderEntity();
+        orderCf.setCustomer(newCustomer);
+        orderService.save(orderCf);
         List<OrderDetail> ListSP= order.getOrderDetails();
         for(OrderDetail sp: ListSP){
-            orderDetailService.save(sp);
+            OrderDetail spCf= new OrderDetail();
+            spCf.setProduct(sp.getProduct());
+            spCf.setQuantity(sp.getQuantity());
+            spCf.setStatus(sp.getStatus());
+            spCf.setOrder(orderCf);
+            orderDetailService.save(spCf);
         }
-        
+               
         req.getSession().setAttribute("order", null);
     }
 }
