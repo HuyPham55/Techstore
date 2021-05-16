@@ -10,10 +10,12 @@
         <div class="container m-2" th:if="${listProducts.isEmpty()}">
             <p class="h1 text-center">Sản phẩm không tồn tại!</p>
         </div>
-        <div class="container h-100">
+        <div class="container">
             <div class="row justify-content-start">
-                <div th:each="product:${listProducts}" class="d-flex align-content-between flex-wrap float-start col-md-3 col-md-4 shadow-sm ">
-                    <img class="card-img-top m-2" th:src="${product.image}" >
+                <div th:each="product:${listProducts}" class="d-flex align-content-between justify-content-center flex-wrap float-start col-md-4 shadow-sm ">
+                    <a th:href="@{'/product/'+${product.id}}">
+                        <img class="card-img-top m-2" loading="lazy" th:src="${product.image}" >
+                    </a>
                     <div class="bottom-wrap m-2 card-body">
                         <h5 class="card-title name" th:text="${product.name}"></h5>
                         <p class="card-text col-4" th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')} "></p>

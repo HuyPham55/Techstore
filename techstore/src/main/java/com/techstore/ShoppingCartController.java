@@ -115,6 +115,7 @@ public class ShoppingCartController {
         }
         return "redirect:/giohang";
     }
+
     @ResponseBody
     @PostMapping("/giohang/luu")
     public void uppdateQuantit(@RequestBody SL sl, HttpSession session, HttpServletRequest req) {
@@ -160,19 +161,19 @@ public class ShoppingCartController {
         }
         customerService.save(newCustomer);
         OrderEntity order = (OrderEntity) session.getAttribute("order");
-        OrderEntity orderCf= new OrderEntity();
+        OrderEntity orderCf = new OrderEntity();
         orderCf.setCustomer(newCustomer);
         orderService.save(orderCf);
-        List<OrderDetail> ListSP= order.getOrderDetails();
-        for(OrderDetail sp: ListSP){
-            OrderDetail spCf= new OrderDetail();
+        List<OrderDetail> ListSP = order.getOrderDetails();
+        for (OrderDetail sp : ListSP) {
+            OrderDetail spCf = new OrderDetail();
             spCf.setProduct(sp.getProduct());
             spCf.setQuantity(sp.getQuantity());
             spCf.setStatus(sp.getStatus());
             spCf.setOrder(orderCf);
             orderDetailService.save(spCf);
         }
-               
+
         req.getSession().setAttribute("order", null);
     }
 }
